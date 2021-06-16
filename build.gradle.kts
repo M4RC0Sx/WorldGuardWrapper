@@ -12,9 +12,9 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        maven("https://maven.enginehub.org/repo/")
         maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
         maven("https://oss.sonatype.org/content/groups/public/")
-        maven("https://maven.enginehub.org/repo/")
         maven("https://jitpack.io")
     }
 }
@@ -22,6 +22,7 @@ subprojects {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven("https://maven.enginehub.org/repo/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots")
     maven("https://oss.sonatype.org/content/groups/public/")
 }
