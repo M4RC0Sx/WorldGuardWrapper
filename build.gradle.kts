@@ -39,7 +39,6 @@ dependencies {
 
 // Configure Shadow to output with normal jar file name:
 tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar").configure {
-    dependsOn(tasks["relocateShadowJar"])
     minimize()
     archiveClassifier.set("")
 }
