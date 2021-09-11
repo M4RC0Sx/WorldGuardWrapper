@@ -37,11 +37,10 @@ dependencies {
 }
 
 
-tasks {
-    shadowJar {
-        archiveClassifier.set("")
-        minimize()
-    }
+// Configure Shadow to output with normal jar file name:
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar").configure {
+    minimize()
+    archiveClassifier.set("")
 }
 
 // Disabling default jar task as jar is output by shadowJar
@@ -68,6 +67,7 @@ publishing {
     }
     publications {
         create<MavenPublication>("maven") {
+            from(components["java"])
             artifact(tasks["shadowJar"])
         }
     }
