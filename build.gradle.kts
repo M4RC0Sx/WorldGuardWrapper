@@ -36,6 +36,25 @@ dependencies {
     implementation(project(":Version7"))
 }
 
+
+// Configure Shadow to output with normal jar file name:
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar").configure {
+    dependsOn(tasks["relocateShadowJar"])
+    minimize()
+    archiveClassifier.set("")
+}
+
+// Disabling default jar task as jar is output by shadowJar
+tasks.named("jar").configure {
+    enabled = false
+}
+
+// Disable Gradle module.json as it lists wrong dependencies
+tasks.withType<GenerateModuleMetadata> {
+    enabled = false
+}
+
+
 publishing {
     repositories {
         maven {
