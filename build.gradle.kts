@@ -69,6 +69,7 @@ publishing {
         create<MavenPublication>("maven") {
             from(components["java"])
             artifact(tasks["shadowJar"])
+            version = project.version as String?
         }
     }
 }
