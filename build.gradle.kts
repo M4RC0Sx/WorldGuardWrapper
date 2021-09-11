@@ -6,6 +6,7 @@ allprojects {
 plugins {
     java
     id("com.github.johnrengelman.shadow") version "5.2.0"
+    `maven-publish`
 }
 
 subprojects {
@@ -33,4 +34,22 @@ dependencies {
     implementation(project(":Layer"))
     implementation(project(":Version6"))
     implementation(project(":Version7"))
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/M4RC0Sx/WorldGuardWrapper")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
 }
